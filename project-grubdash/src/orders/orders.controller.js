@@ -71,16 +71,14 @@ function validateOrderId(req, res, next) {
 
 function update(req, res) {
 	const { data: { deliverTo, mobileNumber, dishes, status } = {} } = req.body;
-
-	res.locals.order = {
-		id: res.locals.order.id,
+	const updatedOrder = {
+		...res.locals.order,
 		deliverTo: deliverTo,
 		mobileNumber: mobileNumber,
 		dishes: dishes,
 		status: status,
 	}
-
-	res.json({ data: res.locals.order });
+	res.json({ data: updatedOrder });
 }
 
 function validateStatus(req, res, next) {
